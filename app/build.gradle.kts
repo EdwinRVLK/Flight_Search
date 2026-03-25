@@ -9,6 +9,13 @@ android {
         version = release(36)
     }
 
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.1"
+    }
+
     defaultConfig {
         applicationId = "com.example.flight_search"
         minSdk = 24
@@ -38,6 +45,11 @@ android {
 }
 
 dependencies {
+    // Estas son las que nos faltaban, ahora con la sintaxis correcta para Kotlin (.kts)
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+
+    // Estas son las que ya tenías configuradas correctamente con tu proyecto
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
