@@ -3,45 +3,31 @@ package com.example.flight_search
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.flight_search.ui.theme.Flight_SearchTheme
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.flight_search.ui.FlightSearchScreen
+import com.example.flight_search.ui.FlightViewModel
+import com.example.flight_search.ui.theme.FlightSearchTheme // Asegúrate de que este import coincida con el nombre de tu tema
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
-            Flight_SearchTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+            FlightSearchTheme {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    // Inicializamos el ViewModel usando la Factory que creamos
+                    val viewModel: FlightViewModel = viewModel(factory = FlightViewModel.Factory)
+
+                    // Llamamos a nuestra pantalla principal
+                    FlightSearchScreen(viewModel = viewModel)
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    Flight_SearchTheme {
-        Greeting("Android")
     }
 }
