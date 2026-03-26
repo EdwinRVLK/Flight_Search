@@ -2,6 +2,7 @@ package com.example.flight_search.data
 
 import android.util.Log
 import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.MutablePreferences
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
@@ -35,7 +36,7 @@ class UserPreferencesRepository(
 
     // Función para guardar el nuevo texto de búsqueda cada vez que el usuario escribe
     suspend fun saveSearchValue(searchValue: String) {
-        dataStore.edit { preferences ->
+        dataStore.edit { preferences: MutablePreferences ->
             preferences[SEARCH_VALUE] = searchValue
         }
     }

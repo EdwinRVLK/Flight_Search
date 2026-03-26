@@ -1,6 +1,5 @@
 package com.example.flight_search.data
 
-import kotlinx.coroutines.flow.Flow
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
